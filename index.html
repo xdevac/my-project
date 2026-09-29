@@ -5,11 +5,19 @@
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>my-project</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Orbitron:wght@400..900&display=swap" rel="stylesheet">
     
     <script>
-      if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-        document.documentElement.classList.add('dark');
-      }
+      (function() {
+        try {
+          var mq = window.matchMedia('(prefers-color-scheme: dark)');
+          if (mq.matches) document.documentElement.classList.add('dark');
+          var fn = function(e) { document.documentElement.classList.toggle('dark', e.matches); };
+          mq.addEventListener ? mq.addEventListener('change', fn) : mq.addListener && mq.addListener(fn);
+        } catch(e) {}
+      })();
     </script>
     
   </head>

@@ -1,3 +1,139 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+      :root {
+  --accent-500: #6366f1;
+  --accent-400: #818cf8;
+  --accent-600: #4f46e5;
+  --accent-glow: rgba(99, 102, 241, 0.3);
+  --accent-subtle: rgba(99, 102, 241, 0.12);
+  --accent-border: rgba(99, 102, 241, 0.3);
+}
+      html, body {
+        overflow-x: hidden !important;
+        width: 100% !important;
+        max-width: 100vw !important;
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      }
+      *, *::before, *::after {
+        box-sizing: border-box;
+      }
+      section, div[data-component-name] {
+        width: 100%;
+        max-width: 100%;
+        box-sizing: border-box;
+        overflow-x: hidden;
+      }
+      img, video, iframe {
+        max-width: 100%;
+        height: auto;
+      }
+      h1, h2, h3, h4, h5, h6, p, span, a, button {
+        overflow-wrap: break-word;
+        word-break: break-word;
+      }
+      @media (max-width: 480px) {
+        h1, .text-4xl {
+          font-size: clamp(1.75rem, 7.5vw, 2.25rem) !important;
+          line-height: 1.25 !important;
+        }
+        .text-5xl, .text-6xl, .text-7xl {
+          font-size: clamp(2rem, 8.5vw, 2.5rem) !important;
+          line-height: 1.15 !important;
+        }
+      }
+      body > .builder-bg-layer, body > [data-sidebar-id*="background-"], body > [data-sidebar-id*="BACKGROUND-"] {
+        position: fixed !important; top: 0 !important; left: 0 !important; width: 100% !important; height: 100% !important; z-index: -10 !important; pointer-events: none !important;
+      }
+      body:has(> .builder-bg-layer) > section:not([style*="background"]):not([class*="bg-"]):not([class*="from-"]),
+      body:has(> [data-sidebar-id*="background-"]) > section:not([style*="background"]):not([class*="bg-"]):not([class*="from-"]) {
+        background-color: transparent !important;
+      }
+      .relative { position: relative; } .absolute { position: absolute; } .fixed { position: fixed; }
+      .inset-0 { top: 0; right: 0; bottom: 0; left: 0; } .w-full { width: 100%; } .h-full { height: 100%; }
+      .min-w-full { min-width: 100%; } .min-h-full { min-height: 100%; } .object-cover { object-fit: cover; }
+      .flex { display: flex; } .grid { display: grid; } .hidden { display: none; }
+      .items-center { align-items: center; } .justify-center { justify-content: center; } .overflow-hidden { overflow: hidden; }
+      .builder-media-overlay { position: absolute !important; inset: 0 !important; pointer-events: none !important; z-index: 1 !important; }
+
+      /* Section-level background videos: ensure full fluid coverage in standalone export */
+      section video,
+      [data-component-name] video,
+      video.absolute,
+      video[class*="absolute"] {
+        position: absolute !important;
+        top: 0 !important;
+        left: 0 !important;
+        width: 100% !important;
+        height: 100% !important;
+        min-width: 100% !important;
+        min-height: 100% !important;
+        object-fit: cover !important;
+        object-position: center !important;
+        pointer-events: none !important;
+        z-index: 0 !important;
+      }
+      /* Sections containing a bg video need overflow:hidden and relative positioning */
+      section:has(video),
+      [data-component-name]:has(video),
+      div:has(> video.absolute) {
+        position: relative !important;
+        overflow: hidden !important;
+      }
+
+      /* Light mode custom color rules */
+      html:not(.dark) [style*="--light-color"]:not([style*="--light-text-grad"]) { color: var(--light-color) !important; -webkit-text-fill-color: var(--light-color) !important; -webkit-background-clip: border-box !important; background-clip: border-box !important; }
+      html:not(.dark) [style*="--light-bg"]:not([style*="--light-bg-img"]) { background-image: none !important; background-color: var(--light-bg) !important; }
+      html:not(.dark) [style*="--light-bg-img"] { background-image: var(--light-bg-img) !important; background-color: transparent !important; }
+      html:not(.dark) [style*="--light-text-grad"] { background-image: var(--light-text-grad) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; color: transparent !important; display: inline-block; }
+      html:not(.dark) [style*="--light-border"] { border-color: var(--light-border) !important; }
+
+      html:not(.dark) [style*="--light-hover-color"]:hover { color: var(--light-hover-color) !important; }
+      html:not(.dark) [style*="--light-hover-bg"]:hover { background-color: var(--light-hover-bg) !important; }
+      html:not(.dark) [style*="--light-hover-border"]:hover { border-color: var(--light-hover-border) !important; }
+
+      html:not(.dark) [style*="--light-active-color"]:active { color: var(--light-active-color) !important; }
+      html:not(.dark) [style*="--light-active-bg"]:active { background-color: var(--light-active-bg) !important; }
+      html:not(.dark) [style*="--light-active-border"]:active { border-color: var(--light-active-border) !important; }
+
+      /* Dark mode custom color rules */
+      html.dark [style*="--dark-color"]:not([style*="--dark-text-grad"]) { color: var(--dark-color) !important; -webkit-text-fill-color: var(--dark-color) !important; -webkit-background-clip: border-box !important; background-clip: border-box !important; }
+      html.dark [style*="--dark-bg"]:not([style*="--dark-bg-img"]) { background-image: none !important; background-color: var(--dark-bg) !important; }
+      html.dark [style*="--dark-bg-img"] { background-image: var(--dark-bg-img) !important; background-color: transparent !important; }
+      html.dark [style*="--dark-text-grad"] { background-image: var(--dark-text-grad) !important; -webkit-background-clip: text !important; background-clip: text !important; -webkit-text-fill-color: transparent !important; color: transparent !important; display: inline-block; }
+      html.dark [style*="--dark-border"] { border-color: var(--dark-border) !important; }
+
+      html.dark [style*="--dark-hover-color"]:hover { color: var(--dark-hover-color) !important; }
+      html.dark [style*="--dark-hover-bg"]:hover { background-color: var(--dark-hover-bg) !important; }
+      html.dark [style*="--dark-hover-border"]:hover { border-color: var(--dark-hover-border) !important; }
+
+      html.dark [style*="--dark-active-color"]:active { color: var(--dark-active-color) !important; }
+      html.dark [style*="--dark-active-bg"]:active { background-color: var(--dark-active-bg) !important; }
+      html.dark [style*="--dark-active-border"]:active { border-color: var(--dark-active-border) !important; }
+
+      /* Dark mode fallback for base light classes when user's device is in dark mode */
+      html.dark [class~="bg-white"]:not([class*="dark:bg-"]):not([style*="--dark-bg"]):not([style*="--light-bg"]) { background-color: #0f172a !important; }
+      html.dark [class~="bg-slate-50"]:not([class*="dark:bg-"]):not([style*="--dark-bg"]):not([style*="--light-bg"]),
+      html.dark [class~="bg-gray-50"]:not([class*="dark:bg-"]):not([style*="--dark-bg"]):not([style*="--light-bg"]) { background-color: #020617 !important; }
+      html.dark [class~="bg-slate-100"]:not([class*="dark:bg-"]):not([style*="--dark-bg"]):not([style*="--light-bg"]) { background-color: #1e293b !important; }
+      html.dark [class~="text-slate-900"]:not([class*="dark:text-"]):not([style*="--dark-color"]) { color: #f8fafc !important; }
+      html.dark [class~="text-slate-800"]:not([class*="dark:text-"]):not([style*="--dark-color"]) { color: #f1f5f9 !important; }
+
+      /* Direct hover / active property fallbacks */
+      [style*="--hover-color"]:hover { color: var(--hover-color) !important; }
+      [style*="--hover-bg"]:hover { background-color: var(--hover-bg) !important; }
+      [style*="--hover-border"]:hover { border-color: var(--hover-border) !important; }
+      [style*="--active-bg"]:active { background-color: var(--active-bg) !important; }
+
+      /* Smooth transitions for interactive elements */
+      button, a, [role="button"], input[type="submit"], input[type="button"] {
+        transition-property: color, background-color, border-color, text-decoration-color, fill, stroke, opacity, box-shadow, transform;
+        transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        transition-duration: 150ms;
+      }
+  
